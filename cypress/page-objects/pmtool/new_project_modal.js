@@ -1,4 +1,4 @@
-import { HomePage } from "./home_page";
+import { TasksPage } from "./tasks_page";
 
 export class NewProjectModal {
   constructor() {
@@ -6,8 +6,8 @@ export class NewProjectModal {
     this.projectSaveButton = 'button[type="submit"]';
     this.prioritySelect = 'div[data-testid="Priority"] select';
     this.statusSelect = 'div[data-testid="Status"] select';
-    this.attachmentInput =
-      '.btn-upload input[type="file"][multiple="multiple"]';
+    this.attachmentInput = "input[type='file'][data-msg-accept]";
+    this.attachmentTable = ".attachments-form-list";
   }
 
   typeProjectName(projectName) {
@@ -27,13 +27,13 @@ export class NewProjectModal {
 
   insertAttachment() {
     cy.log("Using @projectFile to insert attachments");
-    cy.get(this.attachmentInput).selectFile("@projectFile");
+    cy.get(this.attachmentInput).selectFile("@projectFile", { force: true });
     return this;
   }
 
   clickSave() {
+    cy.get(this.attachmentTable).should("be.visible");
     cy.get(this.projectSaveButton).click();
-    // ! this is not correct page, change it to ProjectTasksPage after creating it
-    return new HomePage();
+    return new TasksPage();
   }
 }
