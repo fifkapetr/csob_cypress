@@ -13,5 +13,31 @@ describe("Forms tests", () => {
     cy.get('input[name="interests[]"]').check(["music", "travel"]);
   });
 
-  it("", () => {});
+  it("Check and uncheck checkbox", () => {
+    cy.get('input[name="interests[]"]').check("sports");
+    cy.get('input[name="interests[]"]').uncheck("sports");
+    cy.get('input[name="interests[]"]').uncheck("sports");
+  });
+
+  it("Clean and fill name", () => {
+    cy.get("#name").clear().type("Petr Fifka");
+  });
+
+  it("Select female gender", () => {
+    cy.get("#gender").select("female");
+    cy.get("#gender").select("Male");
+  });
+
+  it("Submit form", () => {
+    cy.get("form").submit();
+  });
+
+  it("Upload file", () => {
+    cy.fixture("upload.txt", { encoding: null }).as("uploadFile");
+    cy.get("input[type='file']").selectFile("@uploadFile");
+  });
+
+  it.only("Type date", () => {
+    cy.get("#datepicker").type("1989-11-04");
+  });
 });
