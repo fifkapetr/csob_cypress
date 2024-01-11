@@ -37,7 +37,7 @@ describe("Forms tests", () => {
     cy.get("input[type='file']").selectFile("@uploadFile");
   });
 
-  it.only("Type date", () => {
+  it("Type date", () => {
     cy.get("#datepicker").type("1989-11-04");
   });
 });
