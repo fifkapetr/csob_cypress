@@ -1,8 +1,8 @@
 import { HeaderSection } from "./header_section";
 
 export class ProjectInfoPage extends HeaderSection {
-  constructor() {
-    super();
+  constructor(projectId = "") {
+    super(`module=items/info&path=21-${projectId}`);
     this.projectNameDiv = ".project-info .portlet-title .caption";
     this.statusDiv = ".table-item-details .form-group-157 td>div";
     this.createdByDiv = ".table-item-details .form-group-155 td>span";

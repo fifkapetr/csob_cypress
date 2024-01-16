@@ -53,6 +53,17 @@ export class LoginPage {
     return this;
   }
 
+  usernameIsVisible() {
+    cy.get(this.usernameInput).should("be.visible");
+    return this;
+  }
+
+  usernameIsEditable(usernameValue) {
+    cy.get(this.usernameInput)
+      .type(usernameValue)
+      .should("have.value", usernameValue);
+  }
+
   passwordHasPlaceholder(placeholderText) {
     cy.get(this.passwordInput).should(
       "have.attr",
@@ -60,6 +71,18 @@ export class LoginPage {
       placeholderText
     );
     return this;
+  }
+
+  passwordIsVisible() {
+    cy.get(this.passwordInput).should("be.visible");
+    return this;
+  }
+
+  passwordIsEditable(passwordValue) {
+    cy.get(this.passwordInput).should("be.enabled");
+    cy.get(this.passwordInput)
+      .type(passwordValue)
+      .should("have.value", passwordValue);
   }
 
   rememberMeHasText(rememberMeText) {

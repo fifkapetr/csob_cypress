@@ -4,7 +4,7 @@ import { TasksPage } from "./tasks_page";
 
 export class ProjectsPage extends HeaderSection {
   constructor() {
-    super();
+    super("module=items/items&path=21");
     this.pageTitle = ".page-title";
     this.newProjectButton = 'button[test_id="Add Project"]';
     this.searchInput = 'input[test_id="search_input"]';

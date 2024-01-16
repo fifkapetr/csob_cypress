@@ -2,8 +2,13 @@ import { HeaderSection } from "./header_section";
 
 export class HomePage extends HeaderSection {
   constructor() {
-    super();
+    super("module=dashboard/dashboard");
     this.pageHeader = "#welcome-page-header";
-    cy.get(this.pageHeader).should("be.visible");
+    // ! This will not work with direct opening
+    // cy.get(this.pageHeader).should("be.visible");
+    // * This is solution to have check in constructor. isOpen have to be inserted as constructor parameter
+    // if (isOpen) {
+    //   cy.get(this.pageHeader).should("be.visible");
+    // }
   }
 }
