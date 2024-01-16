@@ -34,6 +34,10 @@ describe("Projects end 2 end tests", () => {
       .selectStatus("Open")
       .typeName(taskName)
       .selectType("Change")
-      .clickSave();
+      .clickSave()
+      .clickProjects()
+      .typeSearchInput(projectName)
+      .clickSearchButton()
+      .clickProjectName(projectName);
   });
 });

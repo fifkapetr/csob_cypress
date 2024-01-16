@@ -28,11 +28,11 @@ export class NewProjectModal {
   insertAttachment() {
     cy.log("Using @projectFile to insert attachments");
     cy.get(this.attachmentInput).selectFile("@projectFile", { force: true });
+    cy.get(this.attachmentTable).should("be.visible");
     return this;
   }
 
   clickSave() {
-    cy.get(this.attachmentTable).should("be.visible");
     cy.get(this.projectSaveButton).click();
     return new TasksPage();
   }
