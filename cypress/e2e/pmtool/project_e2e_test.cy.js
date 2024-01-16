@@ -22,12 +22,14 @@ describe("Projects end 2 end tests", () => {
       max: 999999,
     })}`;
     cy.fixture("upload.txt", { encoding: null }).as("projectFile");
+    const projectStatus = "Open";
+    const authorName = "ČSOB Cypress";
 
     new ProjectsPage()
       .clickNewProject()
       .typeProjectName(projectName)
       .selectPriority("High")
-      .selectStatus("Open")
+      .selectStatus(projectStatus)
       .insertAttachment()
       .clickSave()
       .clickAddTask()
@@ -38,6 +40,12 @@ describe("Projects end 2 end tests", () => {
       .clickProjects()
       .typeSearchInput(projectName)
       .clickSearchButton()
-      .clickProjectName(projectName);
+      .clickProjectName(projectName)
+      .clickProjectInfo()
+      .projectHasStatus(projectStatus)
+      .createdByHasCorrectName(authorName)
+      .projectTitleHasName(projectName)
+      .clickProfile()
+      .clickLogout();
   });
 });
