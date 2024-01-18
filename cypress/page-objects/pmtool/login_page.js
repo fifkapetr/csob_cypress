@@ -1,10 +1,11 @@
 import { HomePage } from "./home_page";
 import { LostPasswordPage } from "./lost_password_page";
+import { createCustomElement } from "../../helpers/custom_element";
 
 export class LoginPage {
   constructor() {
     this.pmtoolUrl = "https://tredgate.com/pmtool/";
-    this.usernameInput = "#username";
+    this.usernameInput = createCustomElement("#username");
     this.passwordInput = "#password";
     this.loginButton = ".btn";
     this.lostPasswordAnchor = ".forget-password a";
@@ -20,7 +21,7 @@ export class LoginPage {
   }
 
   typeUsername(username) {
-    cy.get(this.usernameInput).type(username);
+    this.usernameInput.get().type(username);
     return this;
   }
 
@@ -45,21 +46,18 @@ export class LoginPage {
   }
 
   usernameHasPlaceholder(placeholderText) {
-    cy.get(this.usernameInput).should(
-      "have.attr",
-      "placeholder",
-      placeholderText
-    );
+    this.usernameInput.hasPlaceholder(placeholderText);
     return this;
   }
 
   usernameIsVisible() {
-    cy.get(this.usernameInput).should("be.visible");
+    this.usernameInput.isVisible();
     return this;
   }
 
   usernameIsEditable(usernameValue) {
-    cy.get(this.usernameInput)
+    this.usernameInput
+      .get()
       .type(usernameValue)
       .should("have.value", usernameValue);
   }
